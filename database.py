@@ -1,0 +1,43 @@
+#!/usr/bin/python
+import sqlite3
+
+conn = sqlite3.connect("switchgear.db");
+conn.execute('''CREATE TABLE TC100(
+	NAME CHAR(50) PRIMARY KEY NOT NULL,
+	ALARM INT NOT NULL,
+	TEMP INT NOT NULL
+	);''')
+conn.execute('''CREATE TABLE NAME(
+	NAME CHAR(50) PRIMARY KEY NOT NULL
+	);''')
+conn.execute('''CREATE TABLE PXM8000(
+	NAME CHAR(50) PRIMARY KEY NOT NULL,
+	LINE1C INT NOT NULL,
+	LINE1V INT NOT NULL,
+	LINE2C INT NOT NULL,
+	LINE2V INT NOT NULL,
+	LINE3C INT NOT NULL,
+	LINE3V INT NOT NULL
+	); ''')
+conn.execute('''
+	CREATE TABLE METER(
+        NAME CHAR(50) PRIMARY KEY NOT NULL,
+        LINE1C INT NOT NULL,
+        LINE1V INT NOT NULL,
+        LINE2C INT NOT NULL,
+        LINE2V INT NOT NULL,
+        LINE3C INT NOT NULL,
+        LINE3V INT NOT NULL
+	); ''')
+conn.execute('''
+	CREATE TABLE MAGNUM(
+        NAME CHAR(50) PRIMARY KEY NOT NULL,
+        REASON CHAR(200) NOT NULL,
+        MAINTENANCE INT NOT NULL,
+        STATUS INT NOT NULL,
+	LINE1C INT NOT NULL,
+        LINE2C INT NOT NULL,
+        LINE3C INT NOT NULL
+	); ''')
+print "Table created successfully"
+conn.close()
